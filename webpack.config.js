@@ -29,7 +29,8 @@ module.exports = {
       './app/components/TodoApp'
     ],
     alias: {
-      applicationStyles: 'app/styles/app.scss'
+      applicationStyles: 'app/styles/app.scss',
+      actions: 'app/redux/actions.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
