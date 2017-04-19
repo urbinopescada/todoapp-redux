@@ -51,7 +51,6 @@ describe('Reducers',()=>{
     it('should toggle todo to completed',()=>{
       state = reducers.todosReducer(deepfreeze(state), deepfreeze(toggleAction));
       expect(state[0].completed).toEqual(true);
-      console.log(state);
       expect(state[0].completedAt).toBeA("number");
     });
 
