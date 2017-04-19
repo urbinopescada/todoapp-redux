@@ -27,4 +27,38 @@ describe('Reducers',()=>{
       expect(res).toBe(true);
     });
   });
+
+  describe('todosReducer',()=>{
+    var toggleAction;
+    var state = [];
+
+    it('should add new todo',()=>{
+      var action = {
+        type: 'ADD_TODO',
+        text: 'walk the dog'
+      };
+      state = reducers.todosReducer(deepfreeze(state), deepfreeze(action));
+      expect(state.length).toEqual(1);
+      expect(state[0].text).toEqual(action.text);
+      expect(state[0].id).toExist();
+
+      toggleAction = {
+        type: 'TOGGLE_TODO',
+        id: state[0].id
+      };
+    });
+
+    it('should toggle todo to completed',()=>{
+      state = reducers.todosReducer(deepfreeze(state), deepfreeze(toggleAction));
+      expect(state[0].completed).toEqual(true);
+      console.log(state);
+      expect(state[0].completedAt).toBeA("number");
+    });
+
+    it('should toggle todo to not completed',()=>{
+      state = reducers.todosReducer(deepfreeze(state), deepfreeze(toggleAction));
+      expect(state[0].completed).toEqual(false);
+      expect(state[0].completedAt).toNotExist();
+    });
+  });
 });
