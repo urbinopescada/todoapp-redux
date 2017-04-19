@@ -6,7 +6,7 @@ export var TodoList = React.createClass({
   render: function() {
     var {todos} = this.props;
     var renderTodos = ()=> {
-      if (!todos || todos.length===0){
+      if ( todos.length===0){
         return (
             <p className="container__message">No data found</p>
         );
