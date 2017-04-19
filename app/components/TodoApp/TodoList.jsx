@@ -1,13 +1,12 @@
 var React = require("react");
-var Todo = require("Todo");
+var {connect} = require('react-redux');
+import Todo from "Todo";
 
-module.exports = React.createClass({
-
+export var TodoList = React.createClass({
   render: function() {
-    var {todos,showCompleted,searchText,onToggle} = this.props;
-
+    var {todos} = this.props;
     var renderTodos = ()=> {
-      if (todos.length===0){
+      if (!todos || todos.length===0){
         return (
             <p className="container__message">No data found</p>
         );
@@ -16,7 +15,7 @@ module.exports = React.createClass({
         return todos.map((todo)=>{
             return (
               //we have to give a unique id to react in key
-              <Todo key={todo.id} onToggle={onToggle} {...todo}/>
+              <Todo key={todo.id} {...todo}/>
             );
         });
       }
@@ -29,3 +28,11 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default connect(
+  (state)=>{
+    return {
+        todos: state.todos
+    };
+  }
+)(TodoList);
