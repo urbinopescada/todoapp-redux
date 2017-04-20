@@ -11,11 +11,7 @@ const store = require('configureStore').configure();
 store.subscribe(()=>{
   console.log("New state", store.getState());
 });
-
-store.dispatch(actions.addTodo("Clean the yard"));
-store.dispatch(actions.setSearchText("yard"));
-store.dispatch(actions.toggleShowCompleted());
-
+  
 ////Load foundation using the css loader (ie: css!) and inject the styles into our html, we do that chaining the loaders
 // require('style!css!foundation-sites/dist/css/foundation.min.css');
 

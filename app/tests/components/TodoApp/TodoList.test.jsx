@@ -31,7 +31,7 @@ describe('TodoList', () => {
         }, {
           id: 3,
           completed: true,
-          text: 'Wash the car',
+          text: 'clean the car',
           completedAt: null,
           createdAt: 500
         }, {
@@ -42,7 +42,7 @@ describe('TodoList', () => {
           createdAt: 500
         }
       ];
-      var store = configure({todos});
+      var store = configure({todos, showCompleted:false,searchText:'clean'});
       var provider = TestUtils.renderIntoDocument(
         <Provider store={store}>
           <ConnectedTodoList/>
@@ -51,7 +51,7 @@ describe('TodoList', () => {
       var todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
       var todos = TestUtils.scryRenderedComponentsWithType(todoList, ConnectedTodo);
 
-      expect(todos.length).toBe(4);
+      expect(todos.length).toBe(1);
     });
 
     it('sould render empty message', () => {
