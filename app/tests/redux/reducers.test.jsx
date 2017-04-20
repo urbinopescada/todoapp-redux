@@ -59,5 +59,21 @@ describe('Reducers',()=>{
       expect(state[0].completed).toEqual(false);
       expect(state[0].completedAt).toNotExist();
     });
+
+
+    it('should add new todos',()=>{
+      var todos =[
+        { id:1111, text:'aaa',completed:false}
+      ];
+      var action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+      state = reducers.todosReducer(deepfreeze([]), deepfreeze(action));
+      expect(state.length).toEqual(1);
+      expect(state[0].text).toEqual(todos[0].text);
+      expect(state[0].id).toBe(todos[0].id);
+
+    });
   });
 });

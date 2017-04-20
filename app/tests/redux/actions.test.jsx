@@ -19,6 +19,17 @@ describe('actions', ()=> {
     var res = actions.addTodo(action.text);
     expect(res).toEqual(action);
   });
+
+  it('should generate ADD_TODOS actions', ()=>{
+    var todos =[
+      { id:1111, text:'aaa',completed:false}
+    ];
+
+    var action = {   type: 'ADD_TODOS',        todos      };
+      var res = actions.addTodos(action.todos);
+      expect(res).toEqual(action);
+    });
+
   it('should generate toggleShowCompleted action', ()=>{
     var action = {
       type: 'TOGGLE_SHOW_COMPLETED'
