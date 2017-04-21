@@ -27,7 +27,7 @@ describe('AddTodo', () =>{
     expect(spy).toHaveBeenCalledWith(action);
   });
   it('should not dispatch AddTodo if invalid data entered', () =>{
-    var spy = expect.createSpy();
+    var spy = expect.createSpy();windows
     var addtodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addtodo));
 
