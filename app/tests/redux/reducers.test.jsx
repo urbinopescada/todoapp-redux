@@ -31,6 +31,7 @@ describe('Reducers',()=>{
   describe('todosReducer',()=>{
     var toggleAction;
     var state = [];
+    var createdTodoId;
 
     it('should add new todo',()=>{
       var action = {
@@ -47,19 +48,36 @@ describe('Reducers',()=>{
       expect(state[0].text).toEqual(action.todo.text);
       expect(state[0].id).toExist();
 
-      toggleAction = {
-        type: 'TOGGLE_TODO',
-        id: state[0].id
-      };
+      createdTodoId = state[0].id;
+
     });
 
     it('should toggle todo to completed',()=>{
+      var updates = {
+        completed: true,
+        completedAt: 125
+      }
+      toggleAction = {
+        type: 'UPDATE_TODO',
+        id: createdTodoId,
+        updates
+      };
+
       state = reducers.todosReducer(deepfreeze(state), deepfreeze(toggleAction));
       expect(state[0].completed).toEqual(true);
       expect(state[0].completedAt).toBeA("number");
     });
 
     it('should toggle todo to not completed',()=>{
+      var updates = {
+        completed: false,
+        completedAt: null
+      }
+      toggleAction = {
+        type: 'UPDATE_TODO',
+        id: createdTodoId,
+        updates
+      };
       state = reducers.todosReducer(deepfreeze(state), deepfreeze(toggleAction));
       expect(state[0].completed).toEqual(false);
       expect(state[0].completedAt).toNotExist();

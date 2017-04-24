@@ -49,9 +49,24 @@ export var addTodos = (todos) => {
   };
 };
 
-export var toggleTodo = (id) => {
+export var updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
+  };
+};
+export var startToggleTodo = (id, completed) => {
+  return (dispach, getState)=>{
+    var todoRef = firebaseRef.child(`todos/${id}`);
+    var updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null
+    }
+
+    return todoRef.update(updates).then(()=>{
+      // when added to db, dispath the data event to update the store to then update views in browser
+      dispach(updateTodo(id, updates));
+    });
   };
 };
