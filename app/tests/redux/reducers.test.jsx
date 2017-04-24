@@ -110,6 +110,17 @@ describe('Reducers',()=>{
       expect(state[0].id).toBe(todos[0].id);
 
     });
-  });
 
+    it('should wipe todos on logout',()=>{
+      var todos =[
+        { id:1111, text:'aaa',completed:false}
+      ];
+      var action = {
+        type: 'LOGOUT',
+        todos
+      };
+      state = reducers.todosReducer(deepfreeze(todos), deepfreeze(action));
+      expect(state.length).toEqual(0);
+    });
+  });
 });
