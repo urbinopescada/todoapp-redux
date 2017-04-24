@@ -14,14 +14,16 @@ const store = configure( );
 // import "./playground-firebase.jsx";
 
 
-store.subscribe(() => {
-  var state = store.getState();
-  TodoAPI.setTodos(state.todos);
-  console.log("New state", store.getState());
-});
+// store.subscribe(() => {
+//   var state = store.getState();
+//   TodoAPI.setTodos(state.todos);
+//   console.log("New state", store.getState());
+// });
 
-var initialTodos =  TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// var initialTodos =  TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 //Fire up foundation
 $(document).foundation();
 

@@ -48,6 +48,26 @@ export var addTodos = (todos) => {
     todos
   };
 };
+export var startAddTodos = () => {
+  return (dispach, getState )=>{
+
+    return  firebaseRef.child('todos').once('value').then((snapshot)=>{
+      // when added to db, dispath the data event to update the store to then update views in browser
+      var dbTodos  = snapshot.val() || {};
+
+      var appTodos = Object.keys(dbTodos).map((key)=>{
+        return {
+          id: key,
+          ...dbTodos[key]
+        }
+      });
+
+      dispach(addTodos(appTodos));
+    }, (e)=>{
+      console.log('Unable to feach data...');
+    });
+  };
+};
 
 export var updateTodo = (id, updates) => {
   return {
