@@ -28,6 +28,18 @@ describe('Reducers',()=>{
     });
   });
 
+  describe('authReducer',()=>{
+    it('should Login',()=>{
+      var action = {
+        type: 'LOGIN',
+        uid:'asderfsoi3238'
+      };
+
+      var res = reducers.authReducer(deepfreeze({}), deepfreeze(action));
+      expect(res.uid).toBe(action.uid);
+    });
+  });
+
   describe('todosReducer',()=>{
     var toggleAction;
     var state = [];
@@ -99,4 +111,5 @@ describe('Reducers',()=>{
 
     });
   });
+
 });
