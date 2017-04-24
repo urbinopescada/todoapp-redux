@@ -10,6 +10,10 @@ import TodoAPI from 'TodoAPI';
 import {configure} from 'configureStore';
 const store = configure( );
 
+
+// import "./playground-firebase.jsx";
+
+
 store.subscribe(() => {
   var state = store.getState();
   TodoAPI.setTodos(state.todos);

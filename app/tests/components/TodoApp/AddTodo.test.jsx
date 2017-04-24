@@ -5,6 +5,8 @@ var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
 
+import * as actions from 'actions';
+
 var {AddTodo} = require('AddTodo');
 
 describe('AddTodo', () =>{
@@ -13,13 +15,15 @@ describe('AddTodo', () =>{
   });
 
   it('should dispatch AddTodo when valid data entered', () =>{
-    var action  = {type:"ADD_TODO", text: "new todo"};
+    var todoText = 'Check mail';
+    var action = actions.startAddTodo(todoText);
+
     var spy = expect.createSpy();
     var addtodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addtodo));
 
     // Set a value to the textbox
-    addtodo.refs.txtText.value = action.text;
+    addtodo.refs.txtText.value = todoText;
 
     //Press submit button;
     TestUtils.Simulate.submit($el.find('form')[0]);
@@ -27,7 +31,7 @@ describe('AddTodo', () =>{
     expect(spy).toHaveBeenCalledWith(action);
   });
   it('should not dispatch AddTodo if invalid data entered', () =>{
-    var spy = expect.createSpy();windows
+    var spy = expect.createSpy();
     var addtodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
     var $el = $(ReactDOM.findDOMNode(addtodo));
 

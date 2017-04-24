@@ -1,3 +1,7 @@
+import firebase,{firebaseRef} from 'app/firebase/';
+var moment = require('moment');
+
+
 export var setSearchText = (searchText) => {
   return {
     type: 'SET_SEARCH_TEXT',
@@ -11,10 +15,30 @@ export var toggleShowCompleted = () => {
   };
 };
 
-export var addTodo = (text) => {
+export var addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
-    text
+    todo
+  };
+};
+export var startAddTodo = (text) => {
+  return (dispach, getState )=>{
+    var todo = {
+      text,
+      completed: false,
+      createdAt: moment().unix(),
+      completedAt: null
+    };
+    // Add to database
+    var todoRef = firebaseRef.child('todos').push(todo);
+
+    return todoRef.then(()=>{
+      // when added to db, dispath the data event to update the store to then update views in browser
+      dispach(addTodo({
+        ...todo,
+        id: todoRef.key
+      }));
+    });
   };
 };
 

@@ -35,11 +35,16 @@ describe('Reducers',()=>{
     it('should add new todo',()=>{
       var action = {
         type: 'ADD_TODO',
-        text: 'walk the dog'
+        todo: {
+          id: 'abc123',
+          text: 'Something to do',
+          completed: false,
+          createdAt: 92384275
+        }
       };
-      state = reducers.todosReducer(deepfreeze(state), deepfreeze(action));
+      state = reducers.todosReducer(deepfreeze([]), deepfreeze(action));
       expect(state.length).toEqual(1);
-      expect(state[0].text).toEqual(action.text);
+      expect(state[0].text).toEqual(action.todo.text);
       expect(state[0].id).toExist();
 
       toggleAction = {
