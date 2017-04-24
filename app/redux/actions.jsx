@@ -1,4 +1,4 @@
-import firebase,{firebaseRef} from 'app/firebase/';
+import firebase,{firebaseRef, githubProvider} from 'app/firebase/';
 var moment = require('moment');
 
 
@@ -88,5 +88,24 @@ export var startToggleTodo = (id, completed) => {
       // when added to db, dispath the data event to update the store to then update views in browser
       dispach(updateTodo(id, updates));
     });
+  };
+};
+
+export var startLogin = () => {
+  return (dispach, getState)=>{
+    return firebase.auth().signInWithPopup(githubProvider).then((result)=>{
+      console.log('Auth worked:', result);
+    },(e)=>{
+      console.log('Error',e);
+    });
+  };
+};
+export var startLogout = () => {
+  return (dispach, getState)=>{
+    return firebase.auth().signOut().then(()=>{
+      console.log("loggedout");
+    },(e)=>{
+      console.log("error in logout":e);
+    })
   };
 };
