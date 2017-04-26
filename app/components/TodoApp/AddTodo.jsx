@@ -3,8 +3,8 @@ import * as Redux from 'react-redux';
 import * as actions from 'actions';
 
 export class AddTodo extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit (e) {

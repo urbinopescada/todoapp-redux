@@ -3,8 +3,8 @@ import * as Redux from 'react-redux';
 import * as actions from 'actions';
 
 export class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onLogin = this.onLogin.bind(this);
   }
   onLogin(){ // this function will need be binded with this at constructor
@@ -28,6 +28,6 @@ export class Login extends React.Component {
       </div>
     )
   }
-}; 
+};
 
 export default Redux.connect()(Login);

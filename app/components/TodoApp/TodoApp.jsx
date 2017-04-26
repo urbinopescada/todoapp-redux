@@ -6,10 +6,10 @@ import * as actions from 'actions';
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import Search from 'Search';
- 
+
 export class TodoApp extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.onLogout = this.onLogout.bind(this);
   }
 
