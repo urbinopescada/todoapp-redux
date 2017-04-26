@@ -1,20 +1,24 @@
-import React from 'react';
+
+import * as React from 'react';
 import * as Redux from 'react-redux';
 
 import * as actions from 'actions';
-
 import TodoList from 'TodoList';
 import AddTodo from 'AddTodo';
 import Search from 'Search';
+ 
+export class TodoApp extends React.Component {
+  constructor() {
+    super();
+    this.onLogout = this.onLogout.bind(this);
+  }
 
-export var TodoApp = React.createClass({
   onLogout(e) {
     var {dispatch} = this.props;
     e.preventDefault();
-
     dispatch(actions.startLogout());
+  }
 
-  },
   render() {
     return (
       <div>
@@ -34,6 +38,6 @@ export var TodoApp = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default Redux.connect()(TodoApp);

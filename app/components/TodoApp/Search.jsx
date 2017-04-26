@@ -1,10 +1,9 @@
-var React = require("react");
+import * as React from 'react';
+import * as Redux from 'react-redux';
+import * as actions from 'actions';
 
-var {connect} = require('react-redux');
-const actions = require('actions');
-
-export var Search = React.createClass({
-  render: function() {
+export class Search extends React.Component {
+  render () {
     var {searchText, showCompleted, dispatch} = this.props;
 
     return (
@@ -24,10 +23,10 @@ export var Search = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
-export default connect((state) => {
+export default Redux.connect((state) => {
   return {
     searchText: state.searchText,
     showCompleted: state.showCompleted
